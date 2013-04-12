@@ -4,6 +4,7 @@ define(function(require){
 
   var validationTests = require('test/validation');
   var emberValidationTests = require('test/ember-validation');
+  var backboneValidationTests = require('test/backbone-validation');
   var conversionTests = require('test/conversion');
 
 });
