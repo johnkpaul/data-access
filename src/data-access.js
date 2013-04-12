@@ -23,6 +23,22 @@ define(function(require){
           extend(this, params);
           return this;
         }, 
+        backboneify: function(){
+          var validator = this.validate;
+          var model = new Backbone.Model();
+          var dependentKeys = getDependentKeys(validator);
+
+          for(var i = 0, len = dependentKeys.length;i < len; i++){
+            var key = dependentKeys[i];
+            model.on('change:'+key, function(){
+              this.set('isValid', validator.call(this));
+            }.bind(model));
+          }
+
+          model.set(this.toJSON());
+
+          return model;
+        },
         emberify:function(){
           var validator = this.validate;
           var emClass = Ember.Object.extend({

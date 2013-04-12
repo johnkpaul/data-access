@@ -24,15 +24,14 @@ define(function(require){
           firstName: 'valid value'
         }).backboneify();
 
-        expect(personModel.get('isValid')).to.equal(true);
-        expect(personModel.get('isNotValid')).to.equal(false);
+        expect(typeof personModel.sync === "function").to.equal(true);
       });
 
       it('updates isValid when invalid attributes are set', function(){
 
         var personModel = personSchema.create({
           firstName: 'valid value'
-        }).emberify();
+        }).backboneify();
 
         expect(personModel.get('isValid')).to.equal(true);
 
