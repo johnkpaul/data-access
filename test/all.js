@@ -1,3 +1,11 @@
+/*
+ * data-access
+ * https://github.com/johnkpaul/data-access
+ *
+ * Copyright (c) 2013 John K. Paul
+ * Licensed under the MIT license.
+ */
+
 (function(){
 "use strict";
 define(function(require){
@@ -5,6 +13,11 @@ define(function(require){
   var validationTests = require('test/validation');
   var emberValidationTests = require('test/ember-validation');
   var backboneValidationTests = require('test/backbone-validation');
+
+  var relationshipTests = require('test/relationships');
+
+  var miscTests = require('test/misc');
+
   var conversionTests = require('test/conversion');
 
 });

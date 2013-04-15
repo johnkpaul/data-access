@@ -19,9 +19,17 @@ define(function(require){
         schema: options.schema,
         validate: options.validate,
         create: function(params){
-          extend(this, repo);
-          extend(this, params);
-          return this;
+          var newObj = Object.create(this);
+          extend(newObj, repo);
+          extend(newObj, params);
+          for( var key in params ){
+            var relationshipSchema = this.schema[key];
+
+            if ( relationshipSchema.create && typeof relationshipSchema === 'object' ){
+              newObj[key] = relationshipSchema.create(params[key]);
+            }
+          }
+          return newObj;
         }, 
         backboneify: function(){
           var validator = this.validate;
