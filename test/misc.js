@@ -5,12 +5,14 @@ define(function(require){
   var dataAccess = require('src/data-access');
 
   describe('misc', function(){
-    var personSchema = dataAccess.createSchema({
+    dataAccess.registerSchema('person', {
       schema:{
         firstName: 'String',
         lastName: 'String'
       }
     });
+
+    var personSchema = dataAccess.initializeSchema({name: 'person', type:'backbone'});
 
     describe('regression tests', function(){
       

@@ -13,7 +13,19 @@ define(function(require){
   var extend = $.extend;
 
   var repo = {
-    createSchema: function(options){
+    schemas: {},
+    schemaFromName: function(name){
+      return this.schemas[name];
+    },
+    registerSchema: function(name, options){
+      this.schemas[name] = this._createSchema(options);
+    },
+    initializeSchema: function(options){
+      var schemaInstance = Object.create(this.schemas[options.name]);
+      schemaInstance._type = options.type;
+      return schemaInstance;
+    },
+    _createSchema: function(options){
 
       var instance = Object.create({
         schema: options.schema,

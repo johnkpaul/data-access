@@ -6,7 +6,7 @@ define(function(require){
 
   describe('data access validations', function(){
 
-    var personSchema = dataAccess.createSchema({
+    dataAccess.registerSchema('person', {
       schema:{
         birthdate: 'Date',
         firstName: 'String',
@@ -16,6 +16,8 @@ define(function(require){
         return this.get('firstName') === "Hello";
       }
     });
+
+    var personSchema = dataAccess.initializeSchema({name:'person', type:'node'});
 
     describe('isValid', function(){
 

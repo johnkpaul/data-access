@@ -5,13 +5,15 @@ define(function(require){
   var dataAccess = require('src/data-access');
 
   describe('data-access external API', function(){
-    var personSchema = dataAccess.createSchema({
+    dataAccess.registerSchema('person', {
       schema:{
         birthdate: 'Date',
         firstName: 'String',
         lastName: 'String'
       }
     });
+
+    var personSchema = dataAccess.initializeSchema({name:'person', type:'backbone'});
 
     describe('toJSON conversions', function(){
 

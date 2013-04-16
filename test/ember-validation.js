@@ -7,7 +7,7 @@ define(function(require){
 
   describe('ember validations', function(){
 
-    var personSchema = dataAccess.createSchema({
+    dataAccess.registerSchema('person', {
       schema:{
         firstName: 'String',
         lastName: 'String'
@@ -16,6 +16,8 @@ define(function(require){
         return this.get('firstName') === "valid value";
       }
     });
+
+    var personSchema = dataAccess.initializeSchema({name:'person', type:'ember'});
 
     describe('emberify', function(){
 

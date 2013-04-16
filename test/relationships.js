@@ -13,20 +13,22 @@ define(function(require){
   var dataAccess = require('src/data-access');
 
   describe('relationships', function(){
-    var petSchema = dataAccess.createSchema({
+    dataAccess.registerSchema('pet', {
       schema:{
         name: 'String',
         legs: 'Number'
       }
     });
 
-    var personSchema = dataAccess.createSchema({
+    dataAccess.registerSchema('person', {
       schema:{
         firstName: 'String',
         lastName: 'String',
-        pet: petSchema
+        pet: dataAccess.schemaFromName('pet')
       }
     });
+
+    var personSchema = dataAccess.initializeSchema({name:'person', type:'backbone'});
 
     describe('parent child', function(){
       
